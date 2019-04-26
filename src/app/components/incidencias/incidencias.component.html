@@ -1,0 +1,147 @@
+<div class="container main-container animated fadeIn margenDebajo">
+    <app-espera *ngIf="cargando"></app-espera>
+    <h1> {{ 'INCIS.TITULO' | translate }} </h1>
+    <hr>
+    <p *ngIf="!esGestor" class="container margenDebajo">{{ 'INCIS.SUBTIT_USU' | translate }} </p>
+    <!-- FILTRO -->
+    <div *ngIf="esGestor"> 
+        <form [formGroup]="formaFiltro">
+            <div class="row">
+                <div class="col-md-3">
+                    <mat-form-field appearance="standard" class="container">
+                        <mat-label>{{ 'INCIS.IDELEC_FILTRO' | translate }}</mat-label>
+                        <input matInput name="idElectromur" formControlName="idElectromur">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3 ">
+                    <mat-form-field appearance="standard" class="container">
+                        <mat-label>{{ 'INCIS.IDAYTO_FILTRO' | translate }}</mat-label>
+                        <input matInput name="idAyto" formControlName="idAyto">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="standard" class="container">
+                        <mat-label>{{ 'INCIS.ESTADO' | translate }}</mat-label>
+                        <mat-select name="estado" formControlName="estado">
+                            <mat-option *ngFor="let st of estados" [value]="st.id"> {{st.suma}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="standard" class="container">
+                        <mat-label>{{ 'INCIS.ADJUNTO' | translate }}</mat-label>
+                        <mat-select name="adjunto" formControlName="adjunto">
+                            <mat-option *ngFor="let st of adjuntos" [value]="st.id"> {{st.desc}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="standard" class="container">
+                            <input matInput [matDatepicker]="picker" placeholder="{{ 'INCIS.FEC_INI' | translate }}" 
+                                formControlName="fechaInicio" id="fechaInicio" [max]="fechaHoy" (click)="picker.open()">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="standard" class="container">
+                        <input matInput [matDatepicker]="pickerFin" placeholder="{{ 'INCIS.FEC_FIN' | translate }}" 
+                            formControlName="fechaFin" id="fechaFin" [max]="fechaHoy" [min]="minFecFin"
+                            (click)="pickerFin.open()">
+                        <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerFin></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="btnFiltros">  
+                    <button mat-fab type="button" color="accent" matTooltip="{{'INCIS.APLICAR_FILTRO' | translate}}"
+                        (click)="aplicarFiltro()">
+                        <mdb-icon fas icon="filter"></mdb-icon>
+                    </button>
+                    
+                </div>
+                <div class="btnFiltros">  
+                    <button mat-fab color="accent" type="button" matTooltip="{{'INCIS.LIMPIAR_FILTRO' | translate}}"
+                        (click)="limpiarFiltro()">
+                        <mdb-icon fas icon="broom"></mdb-icon>
+                    </button>
+                </div>
+                <div class="btnFiltros">  
+                    <button mat-fab color="accent" type="button" matTooltip="{{'INCIS.RECARGAR_FILTRO' | translate}}"
+                        (click)="deshacerFiltro()">
+                        <mdb-icon fas icon="undo"></mdb-icon>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- MAPA -->
+    <div id="mapaIncidencia" class="container animated fadeIn margenDebajo">
+        <div #gmap style="width:100%;height:400px"></div>
+    </div>
+    <br>
+    <!-- INCIDENCIAS -->
+    <div class="col-12 spinnerCentrado">
+        <mat-progress-spinner *ngIf="cargando2" color="warn" mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="incidenciasMostradas.length == 0 && !esGestor && !cargando && !cargando2">
+        {{ 'INCIS.NINGUNA_CREADA' | translate}}
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="incidenciasMostradas.length == 0 && esGestor && !cargando && !cargando2">
+        {{ 'INCIS.NINGUNA' | translate}}
+    </div>
+    <div class="card-columns" *ngIf="incidenciasMostradas.length > 0 && !cargando && !cargando2">
+        <div *ngFor="let item of incidenciasMostradas;let i=index" class="card borde">
+            <div class="card-header">
+                <h6 class="card-title negrita">{{ item.tipoAveriaTit }} - {{ item.averia }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted text-right textoAzul">{{item.fecha}}</h6>
+            </div>
+            <div class="card-body">
+                <!--<p class="card-text" *ngIf="esGestor">
+                    <span class="badge badge-pill badge-dark azul">
+                        {{ 'INCIS.CREADOR' | translate }}</span> {{item.creador}}
+                </p>-->
+                <p class="card-text">
+                    <span class="badge badge-pill badge-warning amarillo">
+                        {{ 'INCIS.ESTADO' | translate }}</span> {{item.estado}}
+                </p>
+                <p class="card-text">
+                    <span class="badge badge-pill badge-dark azul">
+                        {{ 'INCIS.DIREC' | translate }}</span> {{item.direccion}}
+                </p>
+                <p class="card-text">
+                    <span class="badge badge-pill badge-dark azul">
+                        {{ 'INCIS.LOCALIDAD' | translate }}</span> {{item.localidad}}
+                </p>
+                <p class="card-text">
+                    <span class="badge badge-pill badge-dark azul">
+                        {{ 'INCIS.CODPOSTAL' | translate }}</span> {{item.codigoPostal}}
+                </p>
+                <p class="card-text" *ngIf="item.punto">
+                    <span class="badge badge-pill badge-dark azul">
+                        {{ 'INCIS.PUNTO' | translate }}</span> {{item.punto}}
+                </p>
+                <p class="card-text" *ngIf="item.observaciones && esGestor">
+                    <span class="badge badge-pill badge-dark azul">
+                        {{ 'INCIS.OBSERVACIONES_INTERNAS' | translate }}</span> {{item.observaciones}}
+                </p>
+                <p class="card-text" *ngIf="item.idElectromur  && esGestor">
+                    <span class="badge badge-pill badge-dark azul">
+                        {{ 'INCIS.IDELEC' | translate }}</span> {{item.idElectromur}}
+                </p>
+                <p class="card-text" *ngIf="item.idAyto && esGestor">
+                    <span class="badge badge-pill badge-dark azul">
+                        {{ 'INCIS.IDAYTO' | translate }}</span> {{item.idAyto}}
+                </p>
+                <p class="card-text" *ngIf="item.mensajeResolucion">
+                    <span class="badge badge-pill badge-warning amarillo">
+                        {{ 'INCIS.RESOLUCION' | translate }}</span> {{item.mensajeResolucion}}
+                </p>
+                <a [href]="item.imagen" target="_blank">
+                    <img *ngIf="item.imagen" [src]="item.imagen" class="card-img-top rounded pointer separacionDebajo">
+                </a>
+                <button *ngIf="esGestor" mat-raised-button color="primary" class="btn-block" 
+                    (click)="abrirDialogo(item)">{{ 'INCIS.MAS' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

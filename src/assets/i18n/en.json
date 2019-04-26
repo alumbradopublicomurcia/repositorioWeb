@@ -1,0 +1,43 @@
+{
+    "TITULO_APP": "Alumbrado Público Murcia",
+    "NAVBAR": {
+        "INICIO": "Home",
+        "ALTA": "New issue",
+        "INCIS": "Map of issue",
+        "CUENTA": "Mi cuenta",
+        "USUARIOS": "Users",
+        "ROLES": "Roles"
+    },
+    "INICIO": {
+        "TITULO1": "Presentación",
+        "SUBTITULO1": "¿Qué es y qué hace el Alumbrado Público Murcia?",
+        "PARRAFO1": "El Alumbrado Público tiene como objetivo la iluminación de las aceras, calzadas y parques públicos al objeto de que pueda proporcionar, en período nocturno, una visibilidad adecuada para el normal desarrollo de las actividades, así como poder incrementar la seguridad tanto de las personas como en el tráfico rodado.",
+        "PARRAFO2": "El Ayuntamiento de Murcia, al objeto de mejorar la calidad de este servicio por un lado y debido a la expansión que ha experimentado el término municipal, ha aumentado considerablemente el número de puntos de luz instalados en el municipio. De esta forma, se ha pasado en los últimos 30 años de estar instalados 14.600 puntos de luz a los actuales 97.000 puntos existentes, lo que significa que prácticamente la totalidad del término municipal está cubierta por este servicio. Con la implantación de esta página web, el Ayuntamiento de Murcia pretende acercarse más al ciudadano, haciéndole partícipe de este servicio público. Además se facilita su colaboración a fin de que se pueda mejorar día a día la calidad del Alumbrado Público en este municipio.",
+        "TITULO2": "Activity",
+        "SUBTITULO2": "El Alumbrado Público es una instalación que permite, en horario nocturno, mantener la visibilidad en viales, aceras y parques públicos.",
+        "PRE_PARRAFO3": "Es una instalación permanente conectada a las instalaciones de baja tensión de la compañía suministradora de energía, que por tanto conlleva un consumo y un gasto económico. No obstante, el Ayuntamiento de Murcia, al objeto de mantener tanto una política de ahorro energético y medioambiental con este Alumbrado Público como un adecuado mantenimiento de las instalaciones, lleva a cabo las siguientes actuaciones ",
+        "PRE_PARRAFO4": "En los últimos 30 años, como prueba de aplicación sucesiva de nuevas tecnologías, se ha pasado de utilizar lámparas de vapor de mercurio, que predominaba en el 58% de los puntos instalados en la década de los años 80, a la utilización de lámparas de vapor de sodio, mucho más eficientes a nivel energético. Como resultado, en el año 2011 prácticamente el 91% de los puntos de luz instalados utilizaban este tipo de lámparas, con una eficiencia energética del doble que las anteriores. De esta forma, se consiguió optimizar el consumo de energía, con un ahorro de hasta el 80%, lo que nos ha permitido que a pesar del incremento considerable de puntos de luz, se haya reducido el consumo energético a fecha actual a los niveles de consumo del año 2005. Por otra parte, todas las nuevas luminarias instaladas son del tipo FSH 0%, que no emiten luz por encima del plano horizontal que pasa por ellas, con lo que se constribuye a una menor contaminación lumínica al cielo del municipio.",
+        "PRE_PARRAFO5": "Por tanto el Ayuntamiento de Murcia, no sólo ofrece un servicio público al ciudadano, sino que intenta con las nuevas tecnologías que dicho servicio público se realice de la manera más eficiente posible, además de desarrollar medidas de ahorro energético y políticas medioambientales."
+    },
+    "INCIS": {
+        "TITULO": "Incidencias",
+        "SUBTITULO": "Listado de incidencias:"
+    },
+    "USUARIOS": {
+        "TITULO": "Administración de usuarios ",
+        "NUEVO_USUARIO": "Nuevo usuario",
+        "ALIAS": "Alias",
+        "NOMBRE": "Nombre",
+        "APELLIDOS": "Apellidos",
+        "CORREO": "Correo electrónico",
+        "PASSWORD": "Contraseña",
+        "ROL": "Rol",
+        "ID": "Id",
+        "TELEFONO": "Teléfono",
+        "REQUERIDO": "Campo obligatorio.",
+        "GUARDAR": "Guardar",
+        "CANCELAR": "Cancelar",
+        "CORREO_INVALIDO": "Por favor, introduzca una dirección de correo electrónico válida.",
+        "LIMPIAR": "Limpiar campos"
+    }
+}

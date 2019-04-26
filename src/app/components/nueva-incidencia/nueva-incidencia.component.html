@@ -1,0 +1,168 @@
+<div class="container main-container animated fadeIn">
+    <app-espera *ngIf="cargando"></app-espera>
+    <h1>
+        {{ 'INCI.TIT_NUEVA' | translate }}
+    </h1>
+    <hr>
+    <p>
+        <span class="badge badge-pill badge-warning amarillo">{{ 'INCI.PASO1' | translate }}</span>
+        {{ 'INCI.PASO1B' | translate }}
+    </p> 
+    <div class="container">
+        <p>
+            <span class="badge badge-pill badge-dark azul">{{ 'INCI.OPC1' | translate }}</span>
+            {{ 'INCI.OPC1B' | translate }}
+        </p>    
+        <p>
+            <span class="badge badge-pill badge-dark azul">{{ 'INCI.OPC2' | translate }}</span>
+            {{ 'INCI.OPC2B' | translate }}
+        </p>
+        <p>
+            <span class="badge badge-pill badge-dark azul">{{ 'INCI.OPC3' | translate }}</span>
+            {{ 'INCI.OPC3B' | translate }}
+        </p>
+    </div>
+    <!-- MAPA -->
+    <div id="mapaIncidencia" class="container animated fadeIn margenDebajo">
+      <div class="row">
+            <div class="col-md-10">
+                <mat-form-field class="contenedor">
+                    <input matInput placeholder="{{ 'INCI.BUSCAR' | translate }}" (onAddressChange)="cambiaDireccion($event)"
+                        ngx-google-places-autocomplete [options]="opcionesInput" #placesRef="ngx-places">
+                </mat-form-field>
+            </div>
+            <div class="col-md-2">
+                <button mat-raised-button color="accent" (click)="buscarUbicacion()" class="btnUbicacion">
+                    {{ 'INCI.MI_UBICACION' | translate }}
+                </button>
+            </div>
+        </div>
+        <div *ngIf="mostrarErrorLocalizacion > 0" #alerta class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="close" aria-label="Close" (click)="cerrarAlerta()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <span *ngIf="mostrarErrorLocalizacion === 1"><strong>Error</strong> {{ 'INCI.DIREC_NO' | translate}}</span>
+            <span *ngIf="mostrarErrorLocalizacion === 2"><strong>Error</strong> {{ 'INCI.ERROR_LOCALIZACION' | translate}}</span>
+        </div>
+        <div #gmap style="width:100%;height:400px"></div>
+    </div>
+    <div class="container margenDebajo">
+        <form [formGroup]="formaIncidencia" (submit)="crearNuevaIncidencia()">
+            <span class="badge badge-pill badge-warning amarillo margenDebajo"> {{ 'INCI.PASO2' | translate }}</span> 
+            {{ 'INCI.PASO2B' | translate }}
+            <br>
+            <div class="row">
+                <mat-form-field class="contenedor" appearance="outline">
+                    <mat-label>{{ 'INCI.DIRECCION' | translate }}</mat-label>
+                    <input required name="direccion" matInput formControlName="direccion">
+                    <mat-error *ngIf="formaIncidencia.controls['direccion'].hasError('required')">
+                        {{ 'REQUERIDO' | translate }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="contenedor" appearance="outline">
+                    <mat-label>{{ 'INCI.COD_POSTAL' | translate }}</mat-label>
+                    <input required name="codigoPostal" matInput formControlName="codigoPostal">
+                    <mat-error *ngIf="formaIncidencia.controls['codigoPostal'].hasError('required')">
+                        {{ 'REQUERIDO' | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="!formaIncidencia.controls['codigoPostal'].hasError('required') 
+                        && formaIncidencia.controls['codigoPostal'].hasError('noValido')">
+                            {{ 'INCI.ERR_COD_POSTAL' | translate }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="contenedor" appearance="outline">
+                    <mat-label>{{ 'INCI.LOCALIDAD' | translate }}</mat-label>
+                    <input required name="localidad" matInput formControlName="localidad">
+                    <mat-error *ngIf="formaIncidencia.controls['localidad'].hasError('required')">
+                        {{ 'REQUERIDO' | translate }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <br>
+            <span class="badge badge-pill badge-warning amarillo margenDebajo"> {{ 'INCI.PASO3' | translate }}</span> 
+                {{ 'INCI.PASO3B' | translate }}
+            <div class="row">
+                <mat-form-field class="contenedor" appearance="outline">
+                    <mat-label>{{ 'INCI.TIPO_AVERIA' | translate }}</mat-label>
+                    <mat-select required name="tipoAveria" formControlName="tipoAveria" (selectionChange)="cambiaTipoAveria($event.value)">
+                        <mat-option *ngFor="let ave of averias" [value]="ave.id">
+                            <b>{{ave.titulo}}</b> ({{ ave.desc }})</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formaIncidencia.controls['tipoAveria'].hasError('required')">
+                        {{ 'REQUERIDO' | translate }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="contenedor" appearance="outline">
+                    <mat-label>{{ 'INCI.AVERIA' | translate }}</mat-label>
+                    <input required name="averia" matInput formControlName="averia">
+                    <mat-error *ngIf="formaIncidencia.controls['averia'].hasError('required')">
+                        {{ 'REQUERIDO' | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="!formaIncidencia.controls['averia'].hasError('required')
+                        && formaIncidencia.controls['averia'].hasError('minlength')">
+                        {{ 'INCI.ERR_AVERIA' | translate }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <br>
+            <div class="row" *ngIf="mostrarAyuda">
+                <mat-form-field class="contenedor" appearance="outline">
+                    <mat-label>{{ 'INCI.PUNTO' | translate }}</mat-label>
+                    <input name="punto" matInput formControlName="punto" >
+                </mat-form-field>
+                <div>
+                    <mat-expansion-panel (opened)="mostrarInfo = true" (closed)="mostrarInfo = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title >
+                                    <mat-icon matSuffix>
+                                            {{'help'}}
+                                </mat-icon>
+                            </mat-panel-title>
+                            <mat-panel-description >
+                                    {{ 'INCI.PTO_LUZ' | translate }}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>{{'INCI.INFO_PTO' | translate }}</p>
+                        <p>{{'INCI.INFO_PTO2' | translate }}</p>
+                        <a [href]="urlImagenEtiqueta" target="_blank" class="centrado">
+                            <img *ngIf="urlImagenEtiqueta" src="../../../assets/informacion/Etiqueta.jpg"
+                                class="rounded pointer separacionDebajo imagenPortada img-fluid img-thumbnail rounded mx-auto d-block">
+                        </a>
+                    </mat-expansion-panel>
+                </div>
+            </div>
+            <br>
+            <span class="badge badge-pill badge-warning amarillo margenDebajo"> {{ 'INCI.PASO4' | translate }}</span> 
+                {{ 'INCI.PASO4B' | translate }}
+            <br>
+            <p>{{ 'INCI.ADJUNTO' | translate }}</p>
+            <div class="row margenDebajo">
+                <!--De momento, solo dejamos subir un adjunto-->
+                <input type="file" capture="camera" class="form-control-file" #file (change)="cambiaAdjunto(file.files)" accept=".jpg, .jpeg, .png"/>
+            </div>
+            <br>
+            <!--<p> {{ 'LEYENDA' | translate }} </p>-->
+            <div class="row">
+                <div class="example-button-row margenDebajo">
+                    <button [disabled]="guardando" mat-raised-button class="btnSeparado negrita" type="submit" color="accent">
+                        {{ 'INCI.ENVIAR' | translate }}
+                    </button>
+                    <button mat-raised-button color="accent" class="btnSeparado negrita" (click)="cancelar()">
+                        {{ 'CANCELAR' | translate }}
+                    </button>
+                </div>
+                <div class="row" class="contenedor">
+                    <mat-error *ngIf="mostrarError">
+                        {{ 'INCI.UBICACION_REQUERIDA' | translate }}
+                    </mat-error>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

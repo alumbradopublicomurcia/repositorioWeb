@@ -1,0 +1,51 @@
+/*agm-map {
+    height: 400px;
+}*/
+
+#map {
+    height:  400px;
+}
+
+.app-mensajes {
+    overflow-y:scroll;
+    height:270px;
+    /*background:gray;*/
+    
+    padding: 10px;
+    width: 90%;
+    height: 400px;
+    
+    border: 2px solid #08478d;
+    border-radius: 10px;
+}
+
+.img-fluid {
+    max-width: 35%;
+    height: auto;
+}
+
+.borde {
+    /*border-color: #08478d;*/
+    border: 2px solid #08478d;
+}
+
+.textoAzul {
+    color: #08478d;
+}
+
+.btnSeparado {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.btnFiltros {
+    text-align: end;
+    align-self: center;
+    margin-inline-start: 5px;
+}
+
+.spinnerCentrado {
+    position: relative;
+    width: 2em;
+    margin: auto;
+}

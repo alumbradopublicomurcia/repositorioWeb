@@ -1,0 +1,48 @@
+<div class="container main-container animated fadeIn">
+    <app-espera *ngIf="cargando"></app-espera>
+    <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
+        <div class="card_login">
+            <div class="card-body text-center">
+                <form [formGroup]="forma" (ngSubmit)="ingresar()" class="margenDebajo">
+                    <h1>{{ 'NAVBAR.INGRESAR' | translate }}</h1>
+                    <div class="row">
+                        <mat-form-field class="contenedor" appearance="outline">
+                            <mat-label>{{ 'USUARIOS.CORREO' | translate }}</mat-label>
+                            <input #campoCorreo required name="correo" matInput formControlName="correo">
+                            <mat-error *ngIf="forma.controls['correo'].hasError( 'required')">
+                                {{ 'REQUERIDO' | translate}}
+                            </mat-error>
+                            <mat-error *ngIf="forma.controls['correo'].hasError( 'email')">
+                                {{ 'USUARIOS.CORREO_INVALIDO' | translate}}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                        <mat-form-field class="contenedor" appearance="outline">
+                            <mat-label>{{ 'USUARIOS.PASSWORD' | translate }}</mat-label>
+                            <input required name="pass" matInput formControlName="pass" [type]="hide ? 'password' : 'text'"
+                                (keydown)="presionarEnter($event)">
+                            <mat-icon matSuffix (click)="hide=! hide" class="pointer">
+                                {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            <mat-error *ngIf="forma.controls['pass'].hasError( 'required')">
+                                {{ 'REQUERIDO' | translate }}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <button mat-raised-button id="btnAcceso" type="submit" color="accent" class="margenDebajo" [disabled]="deshabilitaBoton">
+                            {{ 'REGISTRO.ACCEDER' | translate }}
+                    </button>
+                </form>
+                <div class="container">
+                    <!--<button mat-stroked-button class="btnSeparado" color="primary" (click)="ingresarConGoogle()">
+                        <span class="fab fa-google" aria-hidden="true"></span>
+                                {{ 'REGISTRO.ACCESO_GOOGLE' | translate }}</button>-->
+                    <button mat-stroked-button class="btnSeparado" color="primary" (click)="resetearPass()"> 
+                        {{ 'REGISTRO.OLVIDAR' | translate }}</button>
+                    <button mat-stroked-button class="btnSeparado" color="primary" routerLink="/registro"> 
+                        {{ 'REGISTRO.NUEVO' | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

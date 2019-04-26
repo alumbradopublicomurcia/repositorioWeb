@@ -1,0 +1,14 @@
+ul {
+    list-style-image: url('../../../assets/iconos/marcadorFarol32.png');
+    /*list-style-image: url('../../../assets/marcadorBombilla32.png');*/
+}
+
+.contenedor-tarjetas {
+    padding: 2%;
+}
+
+.botonLlamativo {
+    margin: auto; 
+    display: block;
+    font-weight: bold;
+}

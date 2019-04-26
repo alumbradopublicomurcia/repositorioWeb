@@ -1,0 +1,47 @@
+<div class="container animated fadeIn">
+  <h1 mat-dialog-title>{{ 'CUENTA.TIT_BAJA' | translate }}</h1>
+  <div class="container animated fadeIn" *ngIf="accederConCorreo">
+    <p> {{ 'CUENTA.VERIFICA_P' | translate }} </p>
+    <form [formGroup]="formaPass">
+      <div class="row">
+        <mat-form-field class="contenedor" appearance="outline">
+          <mat-label>{{ 'CUENTA.VERIFICA_PASS' | translate }}</mat-label>
+          <input required name="pass" matInput formControlName="pass" 
+            [type]="ocultarPass ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="ocultarPass=! ocultarPass" class="pointer">
+            {{ocultarPass ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
+          <mat-error *ngIf="formaPass.controls['pass'].hasError( 'required')">
+            {{ 'REQUERIDO' | translate }}
+          </mat-error>
+          <mat-error *ngIf="formaPass.controls['pass'].hasError( 'minlength')">
+              {{ 'USUARIOS.MINIMO' | translate }}
+          </mat-error>
+        </mat-form-field>
+        <mat-error *ngIf="mostrarError">
+          {{ 'CONTRASENYA_FALLIDA' | translate }}
+        </mat-error>
+      </div>
+    </form>
+  </div>
+
+  <div class="container animated fadeIn" *ngIf="!accederConCorreo">
+    <p> {{ 'CUENTA.VERIFICA_GOOGLE' | translate }} </p>
+    <div class="container">
+      <button mat-stroked-button class="btnSeparado" color="primary" (click)="reIngresarConGoogle()">
+        <span class="fab fa-google" aria-hidden="true"></span>
+            {{ 'CUENTA.ACCESO_GOOGLE' | translate }}</button>
+    </div>
+    <mat-error *ngIf="mostrarErrorGoogle">
+      {{ 'CUENTA.ERROR_GOOGLE' | translate }}
+    </mat-error>              
+  </div>
+
+  <div class="animated fadeIn" style="text-align: center;">
+    <button mat-raised-button color="primary" class="btnSeparado" type="button"
+      (click)="cancelaBaja()">{{ 'CUENTA.NO' | translate }}</button>
+    <button mat-raised-button color="accent" class="btnSeparado" type="button"
+      (click)="confirmaBaja()" [disabled]="deshabilitaBoton">
+        {{ 'CUENTA.BTN_CONFIRMA' | translate }}</button>
+  </div>
+</div>

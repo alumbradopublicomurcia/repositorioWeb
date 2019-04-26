@@ -1,0 +1,146 @@
+html {
+    min-height: 100%;
+    position: relative;
+}
+body {
+    margin: 0;
+}
+
+.pieClase {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+}
+
+.main-container {
+    margin-top: 0px;
+    padding: 1%;
+    margin-bottom: 0px;
+}
+
+.negrita {
+    font-weight: bold !important;
+}
+
+.centradoNegrita {
+    font-weight: bold;
+    text-align: center;
+}
+
+.letraBlanca {
+    color: white;
+}
+
+.llamativo {
+    background: #08478d;/*linear-gradient(to bottom, #08478d 30%, #ffdf00 100%);*/
+    margin-left: 5%;
+    margin-right: 5%;
+    /*background-image: url("./assets/fondos/fondoAzul.jpg");
+    background-image: radial-gradient(circle, #08478d, #ffdf00);
+    background-size: cover;*/
+}
+
+.botonGrande {
+    font-size: 30pt;
+}
+
+.fondo {
+    /* background-image: url("./assets/fondo.jpg");*/
+    background-size: cover;
+}
+
+.imagenPortada {
+    height: 400px;
+    align-items: center;
+}
+.logoPortada {
+    height: 100px;
+    align-items: center;
+}
+
+.centrado {
+    margin: auto;
+    display: block;
+}
+
+/*Animaciones*/
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.fast {
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+}
+
+
+.pointer {
+    cursor: pointer;
+}
+
+.amarillo {
+    background-color: #ffdf00 !important;
+    color: black !important;
+}
+.azul {
+    background-color: #08478d !important;
+}
+
+.btnSeparado {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.titulo {
+    margin-top: 5%;
+}
+
+.letraAmarilla {
+    color: #ffdf00 !important;
+}
+
+.letraAzul {
+    color: #08478d !important;
+}
+
+.separacionDebajo {
+    margin-bottom: 3px;
+}
+
+.margenDebajo {
+    margin-bottom: 30px;
+}
+
+.margenNavBar {
+    margin-top: 80px;
+}
+
+.margenEncimaDebajo {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+
+*{
+    font-family: 'Aleo', serif;
+}

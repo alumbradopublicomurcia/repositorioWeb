@@ -1,0 +1,11 @@
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.btnSeparado {
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-top: 5%;
+}

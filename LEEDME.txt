@@ -1,0 +1,12 @@
+El código fuente público es posible que no corresponda en su totalidad con el código realmente desplegado en el dominio del alumbrado.
+
+Por motivos de seguridad han sido eliminados del código fuente todas las claves.
+
+Ficheros afectados:
+
+- app.module -
+- buzon.component.html -
+- enviroment.prod -
+- enviroment -
+- index.html -
+- FUNCTIONS -

@@ -1,0 +1,150 @@
+<div class="container main-container animated fadeIn margenDebajo">
+    <app-espera *ngIf="cargando"></app-espera>
+    <h1>
+        {{ 'CUENTA.TITULO' | translate }}
+    </h1>
+    <hr>
+    <p>
+        {{ 'CUENTA.SUBTITULO' | translate }}
+    </p>
+    <div class="container">
+        <div class="example-button-row">
+            <button mat-raised-button color="accent"
+                (click)="habilitarEdicion()" [disabled]="edicionDatos">
+                {{ 'CUENTA.MODIF' | translate }}
+            </button>
+        </div>
+        <br>
+        <div>
+            <form [formGroup]="formaUsuario" (submit)="guardarEdicion()">
+                <div class="row">
+                    <mat-form-field class="contenedor" appearance="outline">
+                        <mat-label>{{ 'CUENTA.CORREO' | translate }}</mat-label>
+                        <input required name="correo" matInput formControlName="correo">
+                        <mat-error *ngIf="formaUsuario.controls['correo'].hasError( 'required')">
+                            {{ 'REQUERIDO' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="formaUsuario.controls['correo'].hasError( 'email')">
+                            {{ 'CUENTA.CORREO_INVALIDO' | translate}}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field class="contenedor" appearance="outline">
+                        <mat-label>{{ 'CUENTA.NOMBRE' | translate }}</mat-label>
+                        <input name="nombre" matInput formControlName="nombre">
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field class="contenedor" appearance="outline">
+                        <mat-label>{{ 'CUENTA.APELLIDOS' | translate }}</mat-label>
+                        <input name="apellidos" matInput formControlName="apellidos">
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field class="contenedor" appearance="outline">
+                        <mat-label>{{ 'CUENTA.TELEFONO' | translate }}</mat-label>
+                        <input name="telefono" matInput formControlName="telefono">
+                    </mat-form-field>
+                </div>
+                <p> {{ 'LEYENDA' | translate }} </p>
+                <br>
+                <div class="row">
+                    <div class="example-button-row">
+                        <button mat-raised-button class="btnSeparado" type="submit" color="accent" [disabled]="!edicionDatos">
+                            {{ 'GUARDAR' | translate }}
+                        </button>
+                        <button mat-raised-button color="accent" class="btnSeparado" (click)="cancelarEdicion()" [disabled]="!edicionDatos">
+                            {{ 'CANCELAR' | translate }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br>
+    <hr class="degradada margenEncimaDebajo">
+    <div *ngIf="accedeConCorreo" class="container">
+        <div class="example-button-row">
+            <button mat-raised-button color="accent"
+                (click)="editarPass()" [disabled]="cambiarPass">
+                {{ 'CUENTA.CAMBIAR' | translate }}
+            </button>
+        </div>
+        <br>
+        <div>
+            <form [formGroup]="formaPass" (submit)="guardarPass()">
+                <div class="row">
+                    <mat-form-field class="contenedor" appearance="outline">
+                        <mat-label>{{ 'CUENTA.ACTUAL' | translate }}</mat-label>
+                        <input required name="passActual" matInput formControlName="passActual" [type]="ocultarPass ? 'password' : 'text'">
+                        <mat-icon matSuffix (click)="ocultarPass=! ocultarPass" class="pointer">
+                            {{ocultarPass ? 'visibility_off' : 'visibility'}}
+                        </mat-icon>
+                        <mat-error *ngIf="formaPass.controls['passActual'].hasError( 'required')">
+                            {{ 'REQUERIDO' | translate }}
+                        </mat-error>
+                        <mat-error *ngIf="formaPass.controls['passActual'].hasError( 'minlength')">
+                            {{ 'USUARIOS.MINIMO' | translate }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field class="contenedor" appearance="outline">
+                        <mat-label>{{ 'CUENTA.NUEVA' | translate }}</mat-label>
+                        <input required name="passNueva" matInput formControlName="passNueva" [type]="ocultarPass2 ? 'password' : 'text'">
+                        <mat-icon matSuffix (click)="ocultarPass2=! ocultarPass2" class="pointer">
+                            {{ocultarPass2 ? 'visibility_off' : 'visibility'}}
+                        </mat-icon>
+                        <mat-error *ngIf="formaPass.controls['passNueva'].hasError( 'required')">
+                            {{ 'REQUERIDO' | translate }}
+                        </mat-error>
+                        <mat-error *ngIf="formaPass.controls['passNueva'].hasError( 'minlength')">
+                            {{ 'USUARIOS.MINIMO' | translate }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field class="contenedor" appearance="outline">
+                        <mat-label>{{ 'CUENTA.CONFIRMAR' | translate }}</mat-label>
+                        <input required name="passNueva2" matInput formControlName="passNueva2" [type]="ocultarPass3 ? 'password' : 'text'">
+                        <mat-icon matSuffix (click)="ocultarPass3=! ocultarPass3" class="pointer">
+                            {{ocultarPass3 ? 'visibility_off' : 'visibility'}}
+                        </mat-icon>
+                        <mat-error *ngIf="formaPass.controls['passNueva2'].hasError( 'required')">
+                            {{ 'REQUERIDO' | translate }}
+                        </mat-error>
+                        <mat-error *ngIf="formaPass.controls['passNueva'].value != formaPass.controls['passNueva2'].value">
+                            {{ 'USUARIOS.PASS_NO_IGUAL' | translate }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <div class="example-button-row">
+                        <button mat-raised-button class="btnSeparado" type="submit" color="accent" [disabled]="!cambiarPass">
+                            {{ 'CUENTA.GUARDAR_PASS' | translate }}
+                        </button>
+                        <button mat-raised-button color="accent" type="button" class="btnSeparado" (click)="cancelarPass()"
+                            [disabled]="!cambiarPass">
+                            {{ 'CANCELAR' | translate }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <hr class="degradada margenEncimaDebajo">
+    </div>
+    <div class="container margenDebajo">
+        <h6 class="negrita">{{ 'CUENTA.BAJA' | translate }}</h6>
+        <div class="container animated fadeIn margenDebajo">
+            <p>{{ 'CUENTA.BAJA_P1' | translate}}</p>
+            <ul class="margenDebajo">
+              <li>{{ 'CUENTA.BAJA_P2' | translate}}</li>
+              <li>{{ 'CUENTA.BAJA_P3' | translate}}</li>
+            </ul>
+        </div>
+        <button mat-raised-button type="button" color="accent" (click)="abrirDialogo()">
+            {{ 'CUENTA.BTN_BAJA' | translate }}
+        </button>
+    </div>
+</div>

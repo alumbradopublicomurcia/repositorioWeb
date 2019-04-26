@@ -1,0 +1,51 @@
+<div class="container main-container">
+  <div class="jumbotron jumbotron-fluid animated fadeIn">
+    <div class="container">
+        <h1 class="display-4">
+            {{ 'BUZON.TITULO2' | translate }}
+        </h1>
+        <hr class="my-4">
+        <p class="lead">
+            {{ 'BUZON.SUBTITULO' | translate }}
+        </p>
+    </div>
+  </div>
+  <div class="container">
+    <form [formGroup]="formaBuzon" (submit)="enviarComunicacion()">
+      <div class="row">
+          <mat-form-field class="contenedor" appearance="outline">
+              <mat-label>{{ 'BUZON.CORREO' | translate }}</mat-label>
+              <input required name="correo" matInput formControlName="correo">
+              <mat-error *ngIf="formaBuzon.controls['correo'].hasError( 'required')">
+                  {{ 'REQUERIDO' | translate}}
+              </mat-error>
+              <mat-error *ngIf="formaBuzon.controls['correo'].hasError( 'email')">
+                  {{ 'USUARIOS.CORREO_INVALIDO' | translate}}
+              </mat-error>
+          </mat-form-field>
+      </div>
+      <div class="row margenDebajo">
+        <mat-form-field class="contenedor" appearance="outline">
+            <mat-label>{{ 'BUZON.MENSAJE' | translate }}</mat-label>
+            <textarea required matInput placeholder="mensaje" formControlName="mensaje"></textarea>
+            <mat-error *ngIf="formaBuzon.controls['mensaje'].hasError( 'required')">
+              {{ 'REQUERIDO' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row margenDebajo">
+        <re-captcha
+          (resolved)="resolved($event)"
+          siteKey="">
+        </re-captcha>
+      </div>
+      <div class="row margenDebajo">
+        <div class="example-button-row">
+            <button mat-raised-button class="btnSeparado" type="submit" color="accent" [disabled]="deshabilitaBoton">
+              {{ 'BUZON.ENVIAR' | translate }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

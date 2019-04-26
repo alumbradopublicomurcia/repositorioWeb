@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Alumbrado Público Murcia</title>
+    <base href="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="./assets/iconos/iconoAPMrecortado.png">
+    <!-- Iconos Material Angular-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--Google Font - Pt Sans PT+Sans|Roboto|Roboto+Slab|-->
+    <link href="https://fonts.googleapis.com/css?family=Aleo" rel="stylesheet">
+    
+</head>
+
+<body>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"></script>
+    <router-outlet></router-outlet>
+    <app-root></app-root>
+    <!-- COOKIES -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+    <script>
+        window.addEventListener("load", function(){
+            window.cookieconsent.initialise({
+            "palette": {
+                "popup": {
+                    "background": "#000"
+                },
+                "button": {
+                    "background": "#f1d600"
+                }
+            },
+            "position": "bottom-right",
+            "content": {
+                "message": "Las 'cookies' recogen información en tu navegador web para ofrecerte una mejor experiencia en línea. Utilizamos 'cookies', si continúas navegando consideramos que aceptas su uso.",
+                "dismiss": "Aceptar",
+                "link": "Más información sobre nuestra política web",
+                "href": "./#/avisos/"
+            }
+            })
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<div class="margenNavbar">
+    <app-espera *ngIf="cargando"></app-espera>
+    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar azul" [containerInside]="true">
+        <mdb-navbar-brand>
+            <a class="logo navbar-brand" [routerLink]="['inicio']">
+                <img src="../../../assets/iconos/iconoAPMrecortado.png" style="max-height: 50px;" class="d-inline-block align-top">
+            </a>
+        </mdb-navbar-brand>
+       <links>
+            <ul class="navbar-nav mr-auto">
+            <!-- Barra para los no ingresados-->
+                <li *ngIf="!usuarioIngresado">
+                    <a class="nav-link nav-item waves-light" mdbWavesEffect [routerLink]="['somos']" routerLinkActive="active">
+                        {{ 'PIE.SOMOS' | translate }}</a>
+                </li>
+                <li *ngIf="!usuarioIngresado">
+                    <a class="nav-link nav-item waves-light" mdbWavesEffect [routerLink]="['actividad']" routerLinkActive="active">
+                        {{ 'PIE.ACTIVIDAD' | translate }}</a>
+                </li>
+                <li *ngIf="!usuarioIngresado">
+                    <a class="nav-link nav-item waves-light" mdbWavesEffect [routerLink]="['informacion']" routerLinkActive="active">
+                        {{ 'PIE.INFO' | translate }}</a>
+                </li>
+            <!-- Barra para los usuarios-->
+                <li *ngIf="usuarioIngresado && rol == 0">
+                    <a class="nav-link nav-item waves-light" mdbWavesEffect [routerLink]="['nuevaIncidencia']" routerLinkActive="active">
+                        {{ 'NAVBAR.ALTA' | translate }}</a>
+                </li>
+                <li *ngIf="usuarioIngresado && rol == 0">
+                    <a class="nav-link nav-item waves-light" mdbWavesEffect [routerLink]="['incidencias']" routerLinkActive="active">
+                        {{ 'NAVBAR.INCIS' | translate }}</a>
+                </li>
+                <li *ngIf="usuarioIngresado && rol == 0">
+                    <a class="nav-link nav-item waves-light" mdbWavesEffect [routerLink]="['miCuenta']" routerLinkActive="active">
+                        {{ 'NAVBAR.CUENTA' | translate }}</a>
+                </li>
+            <!-- Barra para los gestores-->
+                <li *ngIf="usuarioIngresado && rol == 1">
+                    <a class="nav-link nav-item waves-light" mdbWavesEffect [routerLink]="['incidencias']" routerLinkActive="active">
+                        {{ 'NAVBAR.INCIS' | translate }}</a>
+                </li>
+                <li *ngIf="usuarioIngresado && rol == 1">
+                    <a class="nav-link nav-item waves-light" mdbWavesEffect [routerLink]="['nuevaIncidencia']" routerLinkActive="active">
+                        {{ 'NAVBAR.ALTA' | translate }}</a>
+                </li>
+                <li *ngIf="usuarioIngresado && rol == 1">
+                    <a class="nav-link nav-item waves-light" mdbWavesEffect [routerLink]="['miCuenta']" routerLinkActive="active">
+                        {{ 'NAVBAR.CUENTA' | translate }}</a>
+                </li>
+            <!-- Barra para los admin-->
+                <li *ngIf="usuarioIngresado && rol == 2">
+                    <a class="nav-link nav-item waves-light" mdbWavesEffect [routerLink]="['incidencias']" routerLinkActive="active">
+                        {{ 'NAVBAR.INCIS' | translate }}</a>
+                </li>
+                <li *ngIf="usuarioIngresado && rol == 2">
+                    <a class="nav-link nav-item waves-light" mdbWavesEffect [routerLink]="['nuevaIncidencia']" routerLinkActive="active">
+                        {{ 'NAVBAR.ALTA' | translate }}</a>
+                </li>
+                <li *ngIf="usuarioIngresado && rol == 2">
+                    <a class="nav-link nav-item waves-light" mdbWavesEffect [routerLink]="['usuarios']" routerLinkActive="active">
+                        {{ 'NAVBAR.USUARIOS' | translate }}</a>
+                </li>
+                <li *ngIf="usuarioIngresado && rol == 2">
+                    <a class="nav-link nav-item waves-light" mdbWavesEffect [routerLink]="['miCuenta']" routerLinkActive="active">
+                        {{ 'NAVBAR.CUENTA' | translate }}</a>
+                </li>
+            </ul>
+            <!-- Botones -->
+            <form class="form-inline">
+                <button *ngIf="!usuarioIngresado" mat-button mdbWavesEffect color="accent" class="nav-item negrita"
+                    data-toggle="collapse" data-target=".navbar-collapse.show" [routerLink]="['ingreso']">
+                        {{ 'NAVBAR.INGRESAR' | translate }}
+                </button>
+                <button *ngIf="usuarioIngresado" mat-raised-button mdbWavesEffect color="accent" class="nav-item"
+                    data-toggle="collapse" data-target=".navbar-collapse.show" (click)="cerrarSesion()">
+                        {{ 'NAVBAR.CERRAR' | translate }}
+                </button>
+                <button *ngIf="!usuarioIngresado" mat-raised-button mdbWavesEffect color="accent" class="nav-item"
+                    data-toggle="collapse" data-target=".navbar-collapse.show" [routerLink]="['registro']">
+                        {{ 'NAVBAR.REGISTRARSE' | translate }}
+                </button> 
+            </form>       
+       </links>
+    </mdb-navbar>
+</div>

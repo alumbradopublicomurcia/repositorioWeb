@@ -1,0 +1,103 @@
+<div class="container main-container margenSuperior animated fadeIn">
+    <app-espera *ngIf="cargando"></app-espera>
+    <h1 class="container">
+        {{ 'REGISTRO.TITULO' | translate }}
+    </h1>
+    <hr>
+    <div class="container animated fadeIn margenDebajo">
+        <p>{{ 'REGISTRO.SUBTITULO' | translate}}</p>
+        <ul class="margenDebajo">
+          <li>{{ 'REGISTRO.SUBTITULO2' | translate}}</li>
+          <li>{{ 'REGISTRO.SUBTITULO3' | translate}}</li>
+        </ul>
+    </div>
+    <div class="container">
+        <form [formGroup]="formaUsuario" (submit)="crearUsuario()">
+            <div class="row">
+                <mat-form-field class="contenedor" appearance="outline">
+                    <mat-label>{{ 'USUARIOS.CORREO' | translate }}</mat-label>
+                    <input #campoCorreo required name="correo" matInput formControlName="correo">
+                    <mat-error *ngIf="formaUsuario.controls['correo'].hasError('required')">
+                        {{ 'REQUERIDO' | translate}}
+                    </mat-error>
+                    <mat-error *ngIf="formaUsuario.controls['correo'].hasError('email')">
+                        {{ 'USUARIOS.CORREO_INVALIDO' | translate}}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="contenedor" appearance="outline">
+                    <mat-label>{{ 'USUARIOS.PASSWORD' | translate }}</mat-label>
+                    <input required name="pass" matInput formControlName="pass" [type]="hide ? 'password' : 'text'">
+                    <mat-icon matSuffix (click)="hide=! hide" class="pointer">
+                        {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-error *ngIf="formaUsuario.controls['pass'].hasError('required')">
+                        {{ 'REQUERIDO' | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="formaUsuario.controls['pass'].hasError('minlength')">
+                        {{ 'USUARIOS.MINIMO' | translate }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="contenedor" appearance="outline">
+                    <mat-label>{{ 'REGISTRO.CONFIRMAR_PASS' | translate }}</mat-label>
+                    <input required name="pass2" matInput formControlName="pass2" [type]="hide2 ? 'password' : 'text'">
+                    <mat-icon matSuffix (click)="hide2=! hide2" class="pointer">
+                        {{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-error *ngIf="formaUsuario.controls['pass2'].hasError('required')">
+                        {{ 'REQUERIDO' | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="formaUsuario.controls['pass'].value != formaUsuario.controls['pass2'].value">
+                        {{ 'USUARIOS.PASS_NO_IGUAL' | translate }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!--  Campos no requeridos-->
+            <div class="row">
+                <mat-form-field class="contenedor" appearance="outline">
+                    <mat-label>{{ 'USUARIOS.NOMBRE' | translate }}</mat-label>
+                    <input name="nombre" matInput formControlName="nombre">
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="contenedor" appearance="outline">
+                    <mat-label>{{ 'USUARIOS.APELLIDOS' | translate }}</mat-label>
+                    <input name="apellidos" matInput formControlName="apellidos">
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="contenedor" appearance="outline">
+                    <mat-label>{{ 'USUARIOS.TELEFONO' | translate }}</mat-label>
+                    <input name="telefono" matInput formControlName="telefono">
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-slide-toggle color="primary" [checked]="aceptaCondiciones" (change)="aceptaCondiciones = !aceptaCondiciones">
+                    {{ 'REGISTRO.AVISO_LEGAL' | translate }}
+                    <a [routerLink]="['../avisos']" target="_blank" > {{ 'REGISTRO.POLITICA' | translate }} </a>
+                    {{ 'REGISTRO.AVISO_LEGAL2' | translate }}
+                    <a [routerLink]="['../datos']" target="_blank"> {{ 'REGISTRO.DATOS' | translate }}</a>
+                </mat-slide-toggle>
+            </div>
+            <br>
+            <div class="row">
+                <div class="example-button-row">
+                    <button mat-raised-button class="btnSeparado" type="submit" color="accent" [disabled]="!aceptaCondiciones">
+                      {{ 'REGISTRO.CREAR' | translate }}
+                  </button>
+                    <button mat-raised-button color="accent" class="btnSeparado" (click)="cancelarDialogo()">
+                      {{ 'CANCELAR' | translate }}
+                  </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <p> {{ 'LEYENDA' | translate }} </p>
+    <br>
+    <!--<div class="container margenDebajo">
+        <button mat-stroked-button class="btnSeparado" color="primary" (click)="registrarseConGoogle()" [disabled]="!aceptaCondiciones">
+            <span class="fab fa-google" aria-hidden="true"></span>
+                    {{ 'REGISTRO.ACCESO_GOOGLE' | translate }}</button>
+    </div>-->
+</div>

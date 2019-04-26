@@ -1,0 +1,27 @@
+{
+    "url": "../../../assets/carrusel/",
+    "imagen": 
+        [
+            {
+                "img": "panoramica_grua_apaisada.jpg",
+                "txt": "Panorámica general"
+            },
+            {
+                "img": "Monte_apaisada.jpg",
+                "txt": "Vista de Murcia nocturna"
+            },
+            {
+                "img": "panoramica_apaisada2.jpg",
+                "txt": "Panorámica del puente de los Peligros"
+            },
+            {
+                "img": "panoramica_apaisada1.jpg",
+                "txt": "Panorámica de la pasarela de Manterola"
+            },
+			{
+                "img": "panoramica_pasarela.jpg",
+                "txt": "Pasarela de Manterola"
+            }
+            
+    ]
+}

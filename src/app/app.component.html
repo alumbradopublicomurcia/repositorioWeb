@@ -1,0 +1,14 @@
+<!--<label>
+  {{ 'HOME.SELECT' | translate }}
+  <select #langSelect (change)="translate.use(langSelect.value)">
+    <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+  </select>
+</label>-->
+<app-navbar></app-navbar>
+<div class="margenNavBar">
+  <router-outlet></router-outlet>
+</div>
+
+<div class="pieClase">
+  <app-pie></app-pie>
+</div>

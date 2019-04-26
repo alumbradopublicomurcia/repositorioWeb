@@ -1,0 +1,70 @@
+<footer class="page-footer font-small azul letraBlanca pt-4">
+  <div class="container-fluid text-center text-md-left margenDebajo">
+    <div class="row">
+      <div class="col-md-2 mt-md-0 mt-2">
+        <img src="../../../assets/iconos/iconoAPMrecortado.png" height="80" class="d-inline-block align-top">
+      </div>
+      <div class="col-md-3 mt-md-0 mt-3">        
+        <ul class="list-unstyled">
+          <li>
+            <mat-icon matSuffix>{{'place'}}</mat-icon>
+            <span> {{ 'PIE.DIRECCION' | translate }}</span>
+          </li>
+          <li>
+            <mat-icon matSuffix>{{'phone'}}</mat-icon>
+            <span> {{ 'PIE.TELEFONO' | translate }}</span>
+          </li>
+          <li>
+              <mat-icon matSuffix>{{'account_balance'}}</mat-icon>
+              <span> {{ 'PIE.CONCEJALIA' | translate }}</span>
+            </li>
+        </ul>
+      </div>
+      <div class="col-md-2 mt-md-0 mt-2">        
+        <ul class="list-unstyled">
+          <li>
+            <a [routerLink]="['somos']" class="letraBlanca" onmouseover="this.style.color='#ffdf00'" onmouseout="this.style.color='white'">
+              {{ 'PIE.SOMOS' | translate }} </a>
+          </li>
+          <li>
+            <a [routerLink]="['actividad']" class="letraBlanca"  onmouseover="this.style.color='#ffdf00'" onmouseout="this.style.color='white'">
+              {{ 'PIE.ACTIVIDAD' | translate }} </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-2 mt-md-0 mt-2">        
+        <ul class="list-unstyled">
+          <li>
+            <a [routerLink]="['avisos']" class="letraBlanca" onmouseover="this.style.color='#ffdf00'" onmouseout="this.style.color='white'">
+              {{ 'PIE.AVISOS' | translate }} </a>
+          </li>
+          <li>
+            <a [routerLink]="['datos']" class="letraBlanca"  onmouseover="this.style.color='#ffdf00'" onmouseout="this.style.color='white'">
+              {{ 'PIE.DATOS' | translate }} </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-2 mt-md-0 mt-2">        
+        <ul class="list-unstyled">
+            <li>
+              <a [routerLink]="['buzon']" class="letraBlanca" onmouseover="this.style.color='#ffdf00'" onmouseout="this.style.color='white'">
+                {{ 'PIE.BUZON' | translate }} </a>
+            </li>
+            <li>
+              <a href="https://github.com/alexmeseguer/alumbrado_repositorio" class="letraBlanca" onmouseover="this.style.color='#ffdf00'" onmouseout="this.style.color='white'">
+                {{ 'PIE.SOFTWARE' | translate }} </a>
+            </li>
+        </ul>
+      </div>
+      <div class="col-md-1 mt-md-0 mt-1">
+        <img src="../../../assets/iconos/logoMurcia.jpg" height="80" class="d-inline-block align-top rounded">
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-copyright text-center py-3">
+    <span class="letraAmarilla negrita">®{{ 'TITULO_APP' | translate }}:</span>
+    <a href="https://www.murcia.es" class="letraBlanca"
+      onmouseover="this.style.color='#ffdf00'" onmouseout="this.style.color='white'"> Ayuntamiento de Murcia</a>
+  </div>
+</footer>

@@ -1,0 +1,57 @@
+<h4>
+    {{ 'USUARIOS.EDITAR_USUARIO' | translate }}
+</h4>
+<hr>
+<div >
+    <form [formGroup]="formaUsuario" (submit)="guardarUsuario()">
+        <div class="row">
+            <mat-form-field example-container class="container" appearance="outline">
+                <mat-label>{{ 'USUARIOS.ROL' | translate }}</mat-label>
+                <mat-select required name="rol" formControlName="rol">
+                    <mat-option *ngFor="let rol of roles" [value]="rol.rol"> {{rol.rol}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field example-container class="container" appearance="outline">
+                <mat-label>{{ 'USUARIOS.CORREO' | translate }}</mat-label>
+                <input required name="correo" matInput formControlName="correo">
+                <mat-error *ngIf="formaUsuario.controls['correo'].hasError( 'required')">
+                    {{ 'REQUERIDO' | translate}}
+                </mat-error>
+                <mat-error *ngIf="formaUsuario.controls['correo'].hasError( 'email')">
+                    {{ 'USUARIOS.CORREO_INVALIDO' | translate}}
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <!--  Campos no requeridos-->
+        <div class="row">
+            <mat-form-field example-container class="container" appearance="outline">
+                <mat-label>{{ 'USUARIOS.NOMBRE' | translate }}</mat-label>
+                <input name="nombre" matInput formControlName="nombre">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field example-container class="container" appearance="outline">
+                <mat-label>{{ 'USUARIOS.APELLIDOS' | translate }}</mat-label>
+                <input name="apellidos" matInput formControlName="apellidos">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field example-container class="container" appearance="outline">
+                <mat-label>{{ 'USUARIOS.TELEFONO' | translate }}</mat-label>
+                <input name="telefono" matInput formControlName="telefono">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <div class="example-button-row">
+                <button mat-raised-button class="btnSeparado" type="submit" color="accent">
+                    {{ 'GUARDAR' | translate }}
+                </button>
+                <button mat-raised-button color="accent" type="button" btnSeparado (click)="cancelarDialogo()">
+                    {{ 'CANCELAR' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

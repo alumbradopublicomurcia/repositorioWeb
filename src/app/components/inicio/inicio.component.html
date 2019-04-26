@@ -1,0 +1,97 @@
+<div *ngIf="!cargando" class="animated fadeIn margenDebajo">
+    <app-espera *ngIf="cargando"></app-espera>
+    <!-- Carrusel de imágenes -->
+    <div class="row margenDebajo centrado animated fadeIn">
+        <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'" [interval]="'4000'">
+            <mdb-carousel-item *ngFor="let item of imagenesVector" [ngStyle]="{'max-height.px': alturaCarrusel}">
+                <div class="view w-100">
+                    <img class="d-block w-100" [src]="item.img" [alt]="item.img">
+                </div>
+                <div class="carousel-caption">
+                    <h4 class="h4-responsive">{{item.txt}}</h4>
+                </div>
+            </mdb-carousel-item>
+        </mdb-carousel>
+    </div>
+   
+    <div class="contenedor-tarjetas">
+        <div class="row">
+            <div class="card-columns">
+                <!-- Regístrate -->
+                <div *ngIf="!estaIngresado" class="card jumbotron jumbotron-fluid animated fadeIn rounded">
+                    <div class="container">
+                        <h6 class="lead">
+                            {{ 'INICIO.INI_SUBTITULO' | translate }}
+                        </h6>
+                        <h2 class="display-4 centradoNegrita">
+                            {{ 'INICIO.INI_TITULO' | translate }}
+                            <img src="../../../assets/iconos/logoMurcia.jpg" class="rounded" style="height: 80px">
+                        </h2>
+                        <div class="container">
+                            <ul>
+                                <li> {{ 'INICIO.INI_P1' | translate }}</li>
+                                <li> {{ 'INICIO.INI_P2' | translate }}</li>
+                                <li> {{ 'INICIO.INI_P3' | translate }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button mat-raised-button mdbWavesEffect color="accent" class="botonLlamativo" [routerLink]="['../registro']">
+                        {{ 'NAVBAR.REGISTRARSE' | translate }}      
+                    </button>
+                </div>
+                <!-- Resto -->
+                <div class="card jumbotron">
+                    <h6 class="lead negrita">
+                        {{ 'INICIO.SUBTITULO1' | translate }}
+                    </h6>
+                    <hr class="my-4">
+                    <p class="">
+                        {{ 'INICIO.PARRAFO1' | translate }}
+                    </p>
+                    <button mat-button mdbWavesEffect color="primary" [routerLink]="['../somos']">
+                       {{ 'INICIO.MAS' | translate }}      
+                    </button>
+                </div>
+        
+                <div class="card jumbotron">
+                    <h6 class="lead negrita">
+                        {{ 'INICIO.TITULO2' | translate }}
+                    </h6>
+                    <hr class="my-4">
+                    <p class="">
+                        {{ 'INICIO.SUBTITULO2' | translate }}
+                    </p>
+                    <button mat-button mdbWavesEffect color="primary" [routerLink]="['../actividad']">
+                       {{ 'INICIO.MAS' | translate }}      
+                    </button>
+                </div>
+            
+                <div class="card jumbotron">
+                    <h6 class="lead negrita">
+                        {{ 'INICIO.NUM_PUNTOS' | translate }}
+                    </h6>
+                    <hr class="my-4">
+                    <p class="">
+                        {{ 'INICIO.NUMERO1' | translate }}
+                    </p>
+                    <button mat-button mdbWavesEffect color="primary" [routerLink]="['../informacion']">
+                       {{ 'INICIO.MAS' | translate }}      
+                    </button>
+                </div>
+            
+                <div class="card jumbotron">
+                    <h6 class="lead negrita">
+                        {{ 'INICIO.TIT_AHORRO' | translate }}
+                    </h6>
+                    <hr class="my-4">
+                    <p class="">
+                        {{ 'INICIO.AHORRO1' | translate }}
+                    </p>
+                    <button mat-button mdbWavesEffect color="primary" [routerLink]="['../informacion']">
+                       {{ 'INICIO.MAS' | translate }}      
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

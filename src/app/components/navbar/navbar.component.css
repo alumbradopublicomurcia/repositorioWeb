@@ -1,0 +1,15 @@
+.enlinea {
+    display: flex;
+}
+
+button {
+    margin-right: 20px;
+}
+
+
+.fijada {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+}

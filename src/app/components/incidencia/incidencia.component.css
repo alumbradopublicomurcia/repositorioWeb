@@ -1,0 +1,25 @@
+.img-fluid {
+    max-width: 35%;
+    height: auto;
+}
+
+.btnSeparado {
+    margin-right: 10px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.btnUbicacion {
+    text-align: end;
+    align-items: center;
+}
+
+.margenPildora {
+    margin-bottom: 1%;
+}
+
+.contenedor {
+    display: flex; 
+    flex-direction: column;
+    width: 100%;
+}

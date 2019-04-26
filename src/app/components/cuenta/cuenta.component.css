@@ -1,0 +1,22 @@
+.btnSeparado {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.titulo {
+    margin-top: 5%;
+}
+
+ul {
+    list-style-image: url('../../../assets/iconos/marcadorFarol32.png');
+}
+
+.negrita {
+    font-weight: bold !important;
+}

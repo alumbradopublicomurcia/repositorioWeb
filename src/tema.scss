@@ -1,0 +1,39 @@
+@import '~@angular/material/theming';
+@include mat-core();
+$my-app-primary: mat-palette($mat-light-blue, 900);
+$my-app-accent: mat-palette($mat-yellow, A400);
+$my-app-warn: mat-palette($mat-amber, 900);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);
+.alternate-theme {
+    $alternate-primary: mat-palette($mat-blue-grey);
+    $alternate-accent: mat-palette($mat-yellow, 400);
+    $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
+    @include angular-material-theme($alternate-theme);
+}
+
+.degradada {
+  border-width: 0 0 1.5px;
+  $color: #08478d;
+  color: $color;
+  border-image: linear-gradient(
+    90deg,
+    rgba($color, 0),
+    rgba($color, 1) 50%,
+    rgba($color, 0) 100%) 0 0 100%;
+  border-style: solid;
+}
+
+.degradadaBlanca {
+  border-width: 0 0 1.5px;
+  $color: white;
+  color: $color;
+  border-image: linear-gradient(
+    90deg,
+    rgba($color, 0),
+    rgba($color, 1) 50%,
+    rgba($color, 0) 100%) 0 0 100%;
+  border-style: solid;
+}
+
+
